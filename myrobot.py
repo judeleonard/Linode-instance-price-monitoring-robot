@@ -8,9 +8,8 @@ import imghdr
 import requests
 from bs4 import BeautifulSoup
 from email.message import EmailMessage
-from config.auth import (SENDER, PASSWORD, TARGET_WEBSITE)
+#from config.auth import (SENDER, PASSWORD, TARGET_WEBSITE)
 
-import schedule
 import os
 import time
 
@@ -18,7 +17,7 @@ import time
 class Robot:
 
     def grab_element(self):
-        url = TARGET_WEBSITE
+        url = os.environ['TARGET_WEBSITE']
         chromeOptions = Options()
         # choose to headless chrome browser here since the robot will run in production mode
         chromeOptions.headless = True
@@ -26,15 +25,15 @@ class Robot:
         driver.get(url)
         time.sleep(3)
         file_data = driver.find_element(By.ID, "compute-high-memory")
-        file_data.screenshot(f"{os.getcwd()}/screenshots/AWS_price_summary.png")
+        file_data.screenshot(f"{os.getcwd()}/screenshots/linode_price_summary.png")
 
         driver.quit()
 
 
     def send_latest_price(self):
-        sender = SENDER
+        sender = os.environ['SENDER']
         recipient = "judeleonard86@gmail.com"
-        password = PASSWORD
+        password = os.environ['PASSWORD']
 
         incoming_message = EmailMessage()   # create an object email message class
         incoming_message['Subject'] = "Latest AWS Prices for Linode Services"
@@ -93,11 +92,4 @@ def monitor_updates():
 
 
 if __name__ == "__main__":
-    # parse all task into a scheduling job
-    # Every day at 12am or 00:00 time the robot runs and checks for update.
-    # if our target price has changed, it updates us with the latest screenshot of price list for all services
-    schedule.every().day.at("00:00").do(monitor_updates)
-    while True:
-        schedule.run_pending()
-        time.sleep(1)
-
+    monitor_updates()
