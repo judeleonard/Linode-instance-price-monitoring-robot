@@ -61,7 +61,7 @@ def monitor_updates():
         'Accept-Language': 'en-US,en;q=0.9',
         'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36',
     }
-    url = TARGET_WEBSITE
+    url = os.environ('TARGET_WEBSITE')
     response = requests.get(url, headers=config)
     if response.status_code != 200:
 	    print("Error getting page")
