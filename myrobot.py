@@ -17,7 +17,7 @@ import time
 class Robot:
 
     def grab_element(self):
-        url = os.environ('TARGET_WEBSITE')
+        url = os.environ.get('TARGET_WEBSITE')
         chromeOptions = Options()
         # choose to headless chrome browser here since the robot will run in production mode
         chromeOptions.headless = True
@@ -31,9 +31,9 @@ class Robot:
 
 
     def send_latest_price(self):
-        sender = os.environ('SENDER')
+        sender = os.environ.get('SENDER')
         recipient = "judeleonard86@gmail.com"
-        password = os.environ('PASSWORD')
+        password = os.environ.get('PASSWORD')
 
         incoming_message = EmailMessage()   # create an object email message class
         incoming_message['Subject'] = "Latest AWS Prices for Linode Services"
@@ -61,7 +61,7 @@ def monitor_updates():
         'Accept-Language': 'en-US,en;q=0.9',
         'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36',
     }
-    url = os.environ('TARGET_WEBSITE')
+    url = os.environ.get('TARGET_WEBSITE')
     response = requests.get(url, headers=config)
     if response.status_code != 200:
 	    print("Error getting page")
