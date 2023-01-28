@@ -17,7 +17,7 @@ import time
 class Robot:
 
     def grab_element(self):
-        url = os.environ['TARGET_WEBSITE']
+        url = os.environ('TARGET_WEBSITE')
         chromeOptions = Options()
         # choose to headless chrome browser here since the robot will run in production mode
         chromeOptions.headless = True
@@ -31,9 +31,9 @@ class Robot:
 
 
     def send_latest_price(self):
-        sender = os.environ['SENDER']
+        sender = os.environ('SENDER')
         recipient = "judeleonard86@gmail.com"
-        password = os.environ['PASSWORD']
+        password = os.environ('PASSWORD')
 
         incoming_message = EmailMessage()   # create an object email message class
         incoming_message['Subject'] = "Latest AWS Prices for Linode Services"
