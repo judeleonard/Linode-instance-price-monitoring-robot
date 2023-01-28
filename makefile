@@ -16,7 +16,6 @@ clean:
 	find . | grep -E ".ipynb_checkpoints" | xargs rm -rf
 	find . | grep -E ".trash" | xargs rm -rf
 	rm -f .coverage
-	black .
 
 .PHONY: run
 run: 
