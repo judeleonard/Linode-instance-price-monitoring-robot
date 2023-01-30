@@ -17,12 +17,12 @@ import time
 class Robot:
 
     def grab_element(self):
-        url = os.environ['TARGET_WEBSITE']
+        TARGET_WEBSITE = os.environ['TARGET_WEBSITE']
         chromeOptions = Options()
         # choose to headless chrome browser here since the robot will run in production mode
         chromeOptions.headless = True
         driver = webdriver.Chrome(executable_path=ChromeDriverManager().install(), options=chromeOptions) 
-        driver.get(url)
+        driver.get(TARGET_WEBSITE)
         time.sleep(3)
         file_data = driver.find_element(By.ID, "compute-high-memory")
         file_data.screenshot(f"{os.getcwd()}/screenshots/linode_price_summary.png")
@@ -31,13 +31,13 @@ class Robot:
 
 
     def send_latest_price(self):
-        sender = os.environ['SENDER']
+        SENDER = os.environ['SENDER']
         recipient = "judeleonard86@gmail.com"
-        password = os.environ['PASSWORD']
+        PASSWORD = os.environ['PASSWORD']
 
         incoming_message = EmailMessage()   # create an object email message class
         incoming_message['Subject'] = "Latest AWS Prices for Linode Services"
-        incoming_message['From'] = sender
+        incoming_message['From'] = SENDER
         incoming_message['To'] = recipient
         incoming_message.set_content('Checkout the latest pricing for Linode!')
 
@@ -50,7 +50,7 @@ class Robot:
         incoming_message.add_attachment(image_data, maintype='image', subtype=image_type, filename=image_name)
         
         with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
-            smtp.login(sender, password)
+            smtp.login(SENDER, PASSWORD)
             smtp.send_message(incoming_message)
 
 
@@ -61,8 +61,8 @@ def monitor_updates():
         'Accept-Language': 'en-US,en;q=0.9',
         'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36',
     }
-    url = TARGET_WEBSITE
-    response = requests.get(url, headers=config)
+    TARGET_WEBSITE = os.environ['TARGET_WEBSITE']
+    response = requests.get(TARGET_WEBSITE, headers=config)
     if response.status_code != 200:
 	    print("Error getting page")
 	    exit()
