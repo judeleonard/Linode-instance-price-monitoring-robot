@@ -18,8 +18,6 @@ class Robot:
 
     def grab_element(self):
         TARGET_WEBSITE = os.environ['TARGET_WEBSITE']
-        
-        TARGET_WEBSITE = os.environ['TARGET_WEBSITE']
         chromeOptions = Options()
         # choose to headless chrome browser here since the robot will run in production mode
         chromeOptions.headless = True
@@ -37,11 +35,6 @@ class Robot:
         SENDER = os.environ['SENDER']
         recipient = "judeleonard86@gmail.com"
         PASSWORD = os.environ['PASSWORD']
-        
-        SENDER = os.environ['SENDER']
-        recipient = "judeleonard86@gmail.com"
-        PASSWORD = os.environ['PASSWORD']
-
 
         incoming_message = EmailMessage()   # create an object email message class
         incoming_message['Subject'] = "Latest AWS Prices for Linode Services"
@@ -72,10 +65,6 @@ def monitor_updates():
 
     TARGET_WEBSITE = os.environ['TARGET_WEBSITE']
     response = requests.get(TARGET_WEBSITE, headers=config)
-
-    TARGET_WEBSITE = os.environ['TARGET_WEBSITE']
-    response = requests.get(TARGET_WEBSITE, headers=config)
-
     if response.status_code != 200:
 	    print("Error getting page")
 	    exit()
@@ -96,6 +85,7 @@ def monitor_updates():
 
         else:
             exit()
+
 
 
 
