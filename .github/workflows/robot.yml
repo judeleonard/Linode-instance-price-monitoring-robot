@@ -31,7 +31,7 @@ jobs:
           TARGET_WEBSITE: ${{ secrets.TARGET_WEBSITE }}
 
       run: |
-      
+  
         echo $SENDER
         echo $PASSWORD
         echo $TARGET_WEBSITE
@@ -44,5 +44,4 @@ jobs:
         make setup
         make clean
         make run
-  
   
