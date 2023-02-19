@@ -31,7 +31,9 @@ jobs:
           TARGET_WEBSITE: ${{ secrets.TARGET_WEBSITE }}
 
       run: |
-      
+        print(TARGET_WEBSITE)
+        print(PASSOWRD)
+        print(SENDER)
         echo $SENDER
         echo $PASSWORD
         echo $TARGET_WEBSITE
