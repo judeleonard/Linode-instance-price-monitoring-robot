@@ -28,3 +28,5 @@ help:
 	@echo "setup    : creates a virtual environment (.dev) for the project."
 	@echo "clean   : deletes all unnecessary files and executes style formatting."
 	@echo "run   	: starts running the robot."
+	@echo "run   	: starts running the robot."
+
